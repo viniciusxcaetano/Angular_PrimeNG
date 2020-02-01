@@ -1,0 +1,14 @@
+<p-dropdown [options]="cars" [(ngModel)]="selectedCar2" filter="true">
+    <ng-template let-item pTemplate="selectedItem"><span
+            style="vertical-align:middle; margin-left: .5em">{{item.label}}</span>
+    </ng-template>
+    <ng-template let-city pTemplate="item">
+        <div class="ui-helper-clearfix" style="position: relative;height: 25px;">
+            <div style="font-size:14px;float:right;margin-top:4px">{{city.label}}</div>
+        </div>
+    </ng-template>
+</p-dropdown>
+
+<p-dropdown [required]="true" [options]="cities" [(ngModel)]="selectedCity" placeholder="Select a City"
+    optionLabel="name" [showClear]="true" (onChange)="teste()"></p-dropdown>
+<p>Selected City: {{selectedCity ? selectedCity.name : 'none'}}</p>
