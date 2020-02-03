@@ -1,95 +1,45 @@
-import { Component } from '@angular/core';
-import { SelectItem } from 'primeng/api';
-import { SelectItemGroup } from 'primeng/api';
+import { Component, OnInit } from '@angular/core';
+import { SelectItem, MessageService } from 'primeng/api';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  providers: [MessageService],
+
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
+  userform: FormGroup;
 
-  cities: City[];
+  submitted: boolean;
 
-  selectedCity: City;
+  genders: SelectItem[];
 
-  cars: SelectItem[];
+  description: string;
 
-  selectedCar1: string;
+  constructor(private fb: FormBuilder, private messageService: MessageService) { }
 
-  selectedCar2: string = 'BMW';
+  ngOnInit() {
+    this.userform = this.fb.group({
+      'firstname': new FormControl('', Validators.required),
+      'lastname': new FormControl('', Validators.required),
+      'password': new FormControl('', Validators.compose([Validators.required, Validators.minLength(6)])),
+      'description': new FormControl(''),
+      'gender': new FormControl('', Validators.required)
+    });
 
-  selectedCar3: string;
-
-  groupedCars: SelectItemGroup[];
-
-  items: SelectItem[];
-
-  item: string;
-
-  constructor() {
-    this.items = [];
-    for (let i = 0; i < 10000; i++) {
-      this.items.push({ label: 'Item ' + i, value: 'Item ' + i });
-    }
-
-    this.cities = [
-      { name: 'New York', code: 'NY' },
-      { name: 'Rome', code: 'RM' },
-      { name: 'London', code: 'LDN' },
-      { name: 'Istanbul', code: 'IST' },
-      { name: 'Paris', code: 'PRS' }
-    ];
-
-    this.cars = [
-      { label: 'Audi', value: 'Audi' },
-      { label: 'BMW', value: 'BMW' },
-      { label: 'Fiat', value: 'Fiat' },
-      { label: 'Ford', value: 'Ford' },
-      { label: 'Honda', value: 'Honda' },
-      { label: 'Jaguar', value: 'Jaguar' },
-      { label: 'Mercedes', value: 'Mercedes' },
-      { label: 'Renault', value: 'Renault' },
-      { label: 'VW', value: 'VW' },
-      { label: 'Volvo', value: 'Volvo' }
-    ];
-
-    this.groupedCars = [
-      {
-        label: 'Germany', value: 'germany.png',
-        items: [
-          { label: 'Audi', value: 'Audi' },
-          { label: 'BMW', value: 'BMW' },
-          { label: 'Mercedes', value: 'Mercedes' },
-          { label: 'Murcia', value: 'Murcia' }
-        ]
-      },
-      {
-        label: 'USA', value: 'usa.png',
-        items: [
-          { label: 'Cadillac', value: 'Cadillac' },
-          { label: 'Ford', value: 'Ford' },
-          { label: 'GMC', value: 'GMC' }
-        ]
-      },
-      {
-        label: 'Japan', value: 'japan.png',
-        items: [
-          { label: 'Honda', value: 'Honda' },
-          { label: 'Mazda', value: 'Mazda' },
-          { label: 'Toyota', value: 'Toyota' }
-        ]
-      }
-    ];
+    this.genders = [];
+    this.genders.push({ label: 'Select Gender', value: '' });
+    this.genders.push({ label: 'Male', value: 'Male' });
+    this.genders.push({ label: 'Female', value: 'Female' });
   }
 
-  teste() {
-    console.log(this.selectedCity.code);
+  onSubmit(value: string) {
+    this.submitted = true;
+    this.messageService.add({ severity: 'info', summary: 'Success', detail: 'Form Submitted' });
   }
-}
 
-interface City {
-  name: string,
-  code: string
+  get diagnostic() { return JSON.stringify(this.userform.value); }
 }
