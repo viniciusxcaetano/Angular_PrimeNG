@@ -14,11 +14,13 @@ import { ButtonModule } from 'primeng/button';
 import { TabViewModule } from 'primeng/tabview';
 import { CodeHighlighterModule } from 'primeng/codehighlighter';
 
-import { AppRoutes } from './app.routes';
+import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './view/home/home.component';
 import { AppTopBarComponent } from './layout/app.topbar.component';
 import { AppSideBarComponent } from './layout/app.sidebar.component';
-
+import { AttendanceComponent } from './attendance/attendance.component';
+import { AttendanceListComponent } from './attendance/attendance-list/attendance-list.component';
+import { AttendanceEditComponent } from './attendance/attendance-edit/attendance-edit.component';
 
 
 @NgModule({
@@ -26,7 +28,10 @@ import { AppSideBarComponent } from './layout/app.sidebar.component';
     AppComponent,
     HomeComponent,
     AppTopBarComponent,
-    AppSideBarComponent
+    AppSideBarComponent,
+    AttendanceComponent,
+    AttendanceListComponent,
+    AttendanceEditComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +50,7 @@ import { AppSideBarComponent } from './layout/app.sidebar.component';
     TabViewModule,
     CodeHighlighterModule,
 
-    AppRoutes
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
