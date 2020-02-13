@@ -14,10 +14,19 @@ import { ButtonModule } from 'primeng/button';
 import { TabViewModule } from 'primeng/tabview';
 import { CodeHighlighterModule } from 'primeng/codehighlighter';
 
+import { AppRoutes } from './app.routes';
+import { HomeComponent } from './view/home/home.component';
+import { AppTopBarComponent } from './layout/app.topbar.component';
+import { AppSideBarComponent } from './layout/app.sidebar.component';
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
+    HomeComponent,
+    AppTopBarComponent,
+    AppSideBarComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +43,9 @@ import { CodeHighlighterModule } from 'primeng/codehighlighter';
     InputTextareaModule,
     ButtonModule,
     TabViewModule,
-    CodeHighlighterModule
+    CodeHighlighterModule,
+
+    AppRoutes
   ],
   providers: [],
   bootstrap: [AppComponent]

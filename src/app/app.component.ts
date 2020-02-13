@@ -1,45 +1,21 @@
-import { Component, OnInit } from '@angular/core';
-import { SelectItem, MessageService } from 'primeng/api';
-import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
-  providers: [MessageService],
-
+  templateUrl: './app.component.html'
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
+  title = 'app';
 
-  userform: FormGroup;
+  mobileMenuActive: boolean;
 
-  submitted: boolean;
-
-  genders: SelectItem[];
-
-  description: string;
-
-  constructor(private fb: FormBuilder, private messageService: MessageService) { }
-
-  ngOnInit() {
-    this.userform = this.fb.group({
-      'firstname': new FormControl('', Validators.required),
-      'lastname': new FormControl('', Validators.required),
-      'password': new FormControl('', Validators.compose([Validators.required, Validators.minLength(6)])),
-      'description': new FormControl(''),
-      'gender': new FormControl('', Validators.required)
-    });
-
-    this.genders = [];
-    this.genders.push({ label: 'Select Gender', value: '' });
-    this.genders.push({ label: 'Male', value: 'Male' });
-    this.genders.push({ label: 'Female', value: 'Female' });
+  onMobileMenuButton(event) {
+    this.mobileMenuActive = !this.mobileMenuActive;
+    event.preventDefault();
   }
 
-  onSubmit(value: string) {
-    this.submitted = true;
-    this.messageService.add({ severity: 'info', summary: 'Success', detail: 'Form Submitted' });
+  hideMobileMenu(event) {
+    this.mobileMenuActive = false;
+    event.preventDefault();
   }
-
-  get diagnostic() { return JSON.stringify(this.userform.value); }
 }
