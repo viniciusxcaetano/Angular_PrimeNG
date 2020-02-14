@@ -2,8 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AppRoutingModule } from './app-routing.module';
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+
 import { DropdownModule } from 'primeng/dropdown';
 import { ToastModule } from 'primeng/toast';
 import { MessageModule } from 'primeng/message';
@@ -14,13 +15,13 @@ import { ButtonModule } from 'primeng/button';
 import { TabViewModule } from 'primeng/tabview';
 import { CodeHighlighterModule } from 'primeng/codehighlighter';
 
-import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './view/home/home.component';
 import { AppTopBarComponent } from './layout/app.topbar.component';
 import { AppSideBarComponent } from './layout/app.sidebar.component';
-import { AttendanceComponent } from './attendance/attendance.component';
-import { AttendanceListComponent } from './attendance/attendance-list/attendance-list.component';
-import { AttendanceEditComponent } from './attendance/attendance-edit/attendance-edit.component';
+
+import { AttendanceService } from './service/attendance.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -28,18 +29,15 @@ import { AttendanceEditComponent } from './attendance/attendance-edit/attendance
     AppComponent,
     HomeComponent,
     AppTopBarComponent,
-    AppSideBarComponent,
-    AttendanceComponent,
-    AttendanceListComponent,
-    AttendanceEditComponent
+    AppSideBarComponent
   ],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule,
-    CommonModule,
-    FormsModule, CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    AppRoutingModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
     ToastModule,
     MessageModule,
     PanelModule,
@@ -48,11 +46,13 @@ import { AttendanceEditComponent } from './attendance/attendance-edit/attendance
     InputTextareaModule,
     ButtonModule,
     TabViewModule,
-    CodeHighlighterModule,
+    CodeHighlighterModule
 
-    AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    { provide: LocationStrategy, useClass: HashLocationStrategy },
+    AttendanceService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

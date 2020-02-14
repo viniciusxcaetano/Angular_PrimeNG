@@ -1,16 +1,16 @@
-
 import { NgModule } from "@angular/core";
-import { CommonModule } from "@angular/common";
 import { AttendanceEditComponent } from './attendance-edit/attendance-edit.component';
 import { AttendanceService } from '../service/attendance.service';
 import { AttendanceListComponent } from './attendance-list/attendance-list.component';
 import { AttendanceComponent } from './attendance.component';
-import { SharedModule } from '../shared/shared.module';
-import { AttendancesRoutingModule } from './attendances-routing.module';
+import { CommonModule } from '@angular/common';
+import { Routes, RouterModule } from '@angular/router';
+
+const routes: Routes = [{ path: '', component: AttendanceComponent }];
 
 @NgModule({
-  imports: [CommonModule, SharedModule, AttendancesRoutingModule],
-  exports: [AttendanceComponent, AttendanceEditComponent],
+  imports: [CommonModule, RouterModule.forChild(routes)],
+  exports: [RouterModule, AttendanceComponent],
   declarations: [AttendanceComponent, AttendanceEditComponent, AttendanceListComponent],
   providers: [AttendanceService]
 })

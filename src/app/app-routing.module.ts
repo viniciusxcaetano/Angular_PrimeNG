@@ -1,23 +1,15 @@
+import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { AboutComponent } from './about.component';
-
-const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'heroes' },
-  {
-    path: 'heroes',
-    loadChildren: () => import('./heroes/heroes.module').then(m => m.HeroesModule)
-  },
-  {
-    path: 'villains',
-    loadChildren: () => import('./villains/villains.module').then(m => m.VillainsModule)
-  },
-  { path: 'about', component: AboutComponent },
-  { path: '**', component: NotFoundComponent }
-];
+import { HomeComponent } from './view/home/home.component';
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot([
+      { path: '', component: HomeComponent },
+      { path: 'attendance', loadChildren: () => import('./attendance/attendance.module').then(m => m.AttendanceModule) },
+
+    ], { scrollPositionRestoration: 'enabled' })
+  ],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
