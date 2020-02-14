@@ -19,7 +19,7 @@ import { HomeComponent } from './view/home/home.component';
 import { AppTopBarComponent } from './layout/app.topbar.component';
 import { AppSideBarComponent } from './layout/app.sidebar.component';
 
-import { AttendanceService } from './service/attendance.service';
+import { AttendanceService } from './attendances/attendance.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 

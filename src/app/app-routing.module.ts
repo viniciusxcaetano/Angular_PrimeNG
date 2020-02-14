@@ -6,7 +6,7 @@ import { HomeComponent } from './view/home/home.component';
   imports: [
     RouterModule.forRoot([
       { path: '', component: HomeComponent },
-      { path: 'attendance', loadChildren: () => import('./attendance/attendance.module').then(m => m.AttendanceModule) },
+      { path: 'attendance', loadChildren: () => import('./attendances/attendances.module').then(m => m.AttendancesModule) },
 
     ], { scrollPositionRestoration: 'enabled' })
   ],
