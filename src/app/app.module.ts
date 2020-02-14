@@ -5,23 +5,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 
-import { DropdownModule } from 'primeng/dropdown';
-import { ToastModule } from 'primeng/toast';
-import { MessageModule } from 'primeng/message';
-import { PanelModule } from 'primeng/panel';
-import { InputTextModule } from 'primeng/inputtext';
-import { InputTextareaModule } from 'primeng/inputtextarea';
-import { ButtonModule } from 'primeng/button';
-import { TabViewModule } from 'primeng/tabview';
-import { CodeHighlighterModule } from 'primeng/codehighlighter';
-
 import { HomeComponent } from './view/home/home.component';
 import { AppTopBarComponent } from './layout/app.topbar.component';
 import { AppSideBarComponent } from './layout/app.sidebar.component';
 
-import { AttendanceService } from './attendances/attendance.service';
+import { AttendanceService } from './attendance/attendance.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+
+
 
 
 @NgModule({
@@ -38,16 +30,6 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    ToastModule,
-    MessageModule,
-    PanelModule,
-    DropdownModule,
-    InputTextModule,
-    InputTextareaModule,
-    ButtonModule,
-    TabViewModule,
-    CodeHighlighterModule
-
   ],
   providers: [
     { provide: LocationStrategy, useClass: HashLocationStrategy },
